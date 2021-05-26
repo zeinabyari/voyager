@@ -35,15 +35,15 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "ZIZ\\Voyager\\Tests\\": "tests/"
+            "TCG\\Voyager\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "stable",
     "extra": {
         "laravel": {
             "providers": [
-                "ZIZ\\Voyager\\VoyagerServiceProvider",
-                "ZIZ\\Voyager\\Providers\\VoyagerDummyServiceProvider"
+                "TCG\\Voyager\\VoyagerServiceProvider",
+                "TCG\\Voyager\\Providers\\VoyagerDummyServiceProvider"
             ]
         }
     },
