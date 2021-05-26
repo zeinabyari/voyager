@@ -30,7 +30,7 @@
     },
     "autoload": {
         "psr-4": {
-            "ZIZ\\Voyager\\": "src/"
+            "TCG\\Voyager\\": "src/"
         }
     },
     "autoload-dev": {
