@@ -137,7 +137,7 @@ class InstallCommand extends Command
         }
 
         $this->addNamespaceIfNeeded(
-            collect($filesystem->files("{$publishablePath}/database/seeds/")),
+            collect($filesystem->files("{$publishablePath}/database/seeders/")),
             $filesystem
         );
 

@@ -30,7 +30,8 @@
     },
     "autoload": {
         "psr-4": {
-            "TCG\\Voyager\\": "src/"
+            "TCG\\Voyager\\": "src/",
+            "Database\\Seeders\\": "publishable/database/seeders/"
         }
     },
     "autoload-dev": {
