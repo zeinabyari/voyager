@@ -142,6 +142,8 @@ class InstallCommand extends Command
         );
 
         $this->info('Dumping the autoloaded files and reloading all new files');
+        exec("composer dump-autoload");
+
         $this->composer->dumpAutoloads();
         require_once base_path('vendor/autoload.php');
 
