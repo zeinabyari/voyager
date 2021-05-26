@@ -61,6 +61,7 @@ return [
         'database' => 'دیتابیس',
         'media' => 'چند رسانه ای',
         'menu_builder' => 'منو ساز',
+        'meta_builder' => 'متا ساز',
         'pages' => 'برگه ها',
         'posts' => 'نوشته ها',
         'roles' => 'نقش ها',
