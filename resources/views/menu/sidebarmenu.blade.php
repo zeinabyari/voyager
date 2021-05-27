@@ -30,55 +30,34 @@
     @endif
     <li @if(in_array(url()->current(),$links)) class="active" @endif>
 
-        @if($menu_item->children && $menu_item->children->count() != 0)
-            <button type="button" title="{{$menu_item->title}}">
-                @if(preg_match('/<svg/', $menu_item->icon_class, $output_array))
-                    {!!$menu_item->icon_class!!}
-                @elseif($menu_item->icon_class)
-                    <i class="{{$menu_item->icon_class}}"></i>
-                @else
-                    <i class="voyager-helm"></i>
-                @endif
-            </button>
-        @else
-            <button type="button" title="{{$menu_item->title}}">
-                <a href="{{$menu_item->link()}}">
-                    @if(preg_match('/<svg/', $menu_item->icon_class, $output_array))
-                        {!!$menu_item->icon_class!!}
-                    @elseif($menu_item->icon_class)
-                        <i class="{{$menu_item->icon_class}}"></i>
-                    @else
-                        <i class="voyager-helm"></i>
-                    @endif
-                </a>
-            </button>
-        @endif
+
+        <button type="button" title="{{$menu_item->title}}">
+            @if(preg_match('/<svg/', $menu_item->icon_class, $output_array))
+                {!!$menu_item->icon_class!!}
+            @elseif($menu_item->icon_class)
+                <i class="{{$menu_item->icon_class}}"></i>
+            @else
+                <i class="voyager-helm"></i>
+            @endif
+        </button>
 
 
-
-        @if($menu_item->children && $menu_item->children->count() != 0)
-
-            <div class="submenu">
-                <button type="button" class="closemenu"></button>
-                <ul>
-                    @if(!count($menu_item->children))
-                        <li><a href="{{$menu_item->link()}}" target="{{$menu_item->target}}">{{$menu_item->title}}</a>
-                        </li>
-                    @endif
-                    @foreach($menu_item->children as $item)
-                        @php
-                            if($item->route!="" && !Auth::user()->hasPermission(str_replace('-','_',"browse_".str_replace(['voyager.','.index'],'',$item->route))) && $item->route!="voyager.dashboard")
-                              continue;
-                            if (Voyager::translatable($item)) {
-                                $item = $item->translate($options->locale);
-                            }
-                        @endphp
-                        <li><a href="{{ $item->link()}}" target="{{$item->target}}">{{$item->title}}</a></li>
-                    @endforeach
-                </ul>
-            </div>
-
-        @endif
+        <div class="submenu">
+            <button type="button" class="closemenu"></button>
+            <ul>
+                @if(!count($menu_item->children))<li><a href="{{$menu_item->link()}}" target="{{$menu_item->target}}">{{$menu_item->title}}</a></li>@endif
+                @foreach($menu_item->children as $item)
+                    @php
+                        if($item->route!="" && !Auth::user()->hasPermission(str_replace('-','_',"browse_".str_replace(['voyager.','.index'],'',$item->route))) && $item->route!="voyager.dashboard")
+                          continue;
+                        if (Voyager::translatable($item)) {
+                            $item = $item->translate($options->locale);
+                        }
+                    @endphp
+                    <li><a href="{{ $item->link()}}" target="{{$item->target}}">{{$item->title}}</a></li>
+                @endforeach
+            </ul>
+        </div>
 
 
     </li>
