@@ -27,6 +27,17 @@ class ComposerStaticInit7d3424bd53991fb1ce845cab2c38d031
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'DataRowsTableSeeder' => __DIR__ . '/../..' . '/publishable/database/seeds/DataRowsTableSeeder.php',
+        'DataTypesTableSeeder' => __DIR__ . '/../..' . '/publishable/database/seeds/DataTypesTableSeeder.php',
+        'MenuItemsTableSeeder' => __DIR__ . '/../..' . '/publishable/database/seeds/MenuItemsTableSeeder.php',
+        'MenusTableSeeder' => __DIR__ . '/../..' . '/publishable/database/seeds/MenusTableSeeder.php',
+        'PermissionRoleTableSeeder' => __DIR__ . '/../..' . '/publishable/database/seeds/PermissionRoleTableSeeder.php',
+        'PermissionsTableSeeder' => __DIR__ . '/../..' . '/publishable/database/seeds/PermissionsTableSeeder.php',
+        'RolesTableSeeder' => __DIR__ . '/../..' . '/publishable/database/seeds/RolesTableSeeder.php',
+        'SettingsTableSeeder' => __DIR__ . '/../..' . '/publishable/database/seeds/SettingsTableSeeder.php',
+        'TranslationsTableSeeder' => __DIR__ . '/../..' . '/publishable/database/seeds/TranslationsTableSeeder.php',
+        'VoyagerDatabaseSeeder' => __DIR__ . '/../..' . '/publishable/database/seeds/VoyagerDatabaseSeeder.php',
+        'VoyagerDummyDatabaseSeeder' => __DIR__ . '/../..' . '/publishable/database/seeds/VoyagerDummyDatabaseSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

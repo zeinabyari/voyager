@@ -31,7 +31,10 @@
     "autoload": {
         "psr-4": {
             "TCG\\Voyager\\": "src/"
-        }
+        },
+        "classmap": [
+            "publishable/database/seeds"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
