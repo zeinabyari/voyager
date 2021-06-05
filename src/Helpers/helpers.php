@@ -39,8 +39,8 @@ if(!function_exists('Kavenegar')){
      */
     function Kavenegar($phone, $message, $override = false){
 
-        $sms = Sms::first();
-        if($sms->stock > 0 || $override){
+        $sms = \TCG\Voyager\Models\Sms::first();
+        if($sms && ($sms->stock > 0 || $override)){
             $curl = curl_init();
             curl_setopt_array($curl, [
                 CURLOPT_URL => "https://api.kavenegar.com/v1/" . config('Constants.SMS_API') . "/verify/lookup.json",
@@ -56,7 +56,10 @@ if(!function_exists('Kavenegar')){
                     'template' => "axaval",
                 ],
             ]);
+
+
             $response = curl_exec($curl);
+
             curl_close($curl);
             $response = json_decode($response);
             //dd($response);
@@ -64,7 +67,7 @@ if(!function_exists('Kavenegar')){
                 \Illuminate\Support\Facades\Log::info($response->entries[0]->statustext);
             }
 
-            if($response->return && env('APP_DEBUG') == true){
+            if($response && $response->return && env('APP_DEBUG') == true){
                 \Illuminate\Support\Facades\Log::info("SMS / code" . $response->return->status . " : " . $response->return->message);
             }
 
