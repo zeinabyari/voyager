@@ -25,11 +25,11 @@
             <div class="box">
                 <ul>
                     <li class="active" data-id="users"
-                        data-info="{{Auth::user()->locale=='fa' ? fa_number(App\User::count()) : App\User::count()}} {{__('voyager::hotdesk.user')}}">{{__('voyager::hotdesk.users')}}</li>
+                        data-info="{{Auth::user()->locale=='fa' ? fa_number(App\Models\User::count()) : App\Models\User::count()}} {{__('voyager::hotdesk.user')}}">{{__('voyager::hotdesk.users')}}</li>
                     <li data-id="orders"
                         data-info="{{Auth::user()->locale=='fa' ? fa_number(\TCG\Voyager\Models\Transaction::where([['product_id','!=','0'],['status','=','success']])->count()) : \TCG\Voyager\Models\Transaction::where([['product_id','!=','0'],['status','=','success']])->count()}} {{__('voyager::hotdesk.sells')}}">{{__('voyager::hotdesk.sells')}}</li>
                 </ul>
-                <span>{{Auth::user()->locale=='fa' ? fa_number(App\User::count()) : App\User::count()}} {{__('voyager::hotdesk.user')}}</span>
+                <span>{{Auth::user()->locale=='fa' ? fa_number(App\Models\User::count()) : App\Models\User::count()}} {{__('voyager::hotdesk.user')}}</span>
                 <canvas id="userchart" width="100%" height="160px"></canvas>
             </div>
         </div>
