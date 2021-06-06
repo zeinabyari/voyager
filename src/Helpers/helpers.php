@@ -31,16 +31,17 @@ if(!function_exists('get_file_name')){
 
 if(!function_exists('Kavenegar')){
 
-    /**
-     * @param $phone
-     * @param $message
-     * @return mixed
-     * Gets the phone and a message, calls kavenegar send message api.
+    /*
+    * @param $phone
+    * @param $message
+    * @return mixed
+        * Gets the phone and a message, calls kavenegar send message api.
      */
     function Kavenegar($phone, $message, $override = false){
 
+        //        $sms = Sms::first();
         $sms = \TCG\Voyager\Models\Sms::first();
-        if($sms && ($sms->stock > 0 || $override)){
+        if($sms->stock > 0 || $override){
             $curl = curl_init();
             curl_setopt_array($curl, [
                 CURLOPT_URL => "https://api.kavenegar.com/v1/" . config('Constants.SMS_API') . "/verify/lookup.json",
@@ -56,10 +57,7 @@ if(!function_exists('Kavenegar')){
                     'template' => "axaval",
                 ],
             ]);
-
-
             $response = curl_exec($curl);
-
             curl_close($curl);
             $response = json_decode($response);
             //dd($response);
@@ -67,7 +65,7 @@ if(!function_exists('Kavenegar')){
                 \Illuminate\Support\Facades\Log::info($response->entries[0]->statustext);
             }
 
-            if($response && $response->return && env('APP_DEBUG') == true){
+            if($response->return && env('APP_DEBUG') == true){
                 \Illuminate\Support\Facades\Log::info("SMS / code" . $response->return->status . " : " . $response->return->message);
             }
 
@@ -124,8 +122,7 @@ if(!function_exists('json_printer')){
                     $decrypted = Crypt::decryptString($dataof);
                     if(is_serialized_string($decrypted)){
                         $decrypted = unserialize($decrypted);
-                        if(is_object($decrypted)){
-                            $html .= json_printer($decrypted);
+                        if(is_object($decrypted)){$html .= json_printer($decrypted);
                         }
 
                     }
@@ -153,19 +150,42 @@ function is_serialized_string($string){
 }
 
 if(!function_exists('_response')){
-    /**
-     * @param null $data
-     * @param string|null $message
-     * @param bool $status
-     * @param int $code
-     * @return JsonResponse
-     */
+    /*
+    * @param null $data
+    * @param string|null $message
+    * @param bool $status
+    * @param int $code
+    * @return JsonResponse
+        */
     function _response($data = null, string $message = null, bool $status = true, $code = 200): JsonResponse{
         return response()->json([
             "data" => $data ?? [],
             "message" => $message ?? "",
             "status" => $status,
         ], $code ?? 200);
+    }
+}
+
+if(!function_exists('get_image')){
+    function get_image($image){
+        if(!isset($image) || $image == ""){
+            return "";
+        }
+
+        if(substr_count($image, 'http') == 0){
+            if(substr_count($image, 'storage') > 0){
+                if(substr_count($image, '/storage') > 0){
+                    $image = config('app.url') . $image;
+                } else {
+                    $image = config('app.url') . '/' . $image;
+                }
+
+            } else {
+                $image = config('app.url') . '/storage/' . $image;
+            }
+        }
+
+        return preg_replace("/ /", "%20", $image);
     }
 }
 
@@ -204,4 +224,3 @@ if(!function_exists("watermarkPhoto")){
         return $filePath2Save;
     }
 }
-
