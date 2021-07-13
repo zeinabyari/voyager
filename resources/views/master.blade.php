@@ -41,7 +41,7 @@
     <script src="{{ voyager_asset('js/jquery.min.js') }}"></script>
 
     <script src="{{ voyager_asset('js/jquery-ui.js') }}"></script>
-    <script src="{{ voyager_asset('js/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+{{--    <script src="{{ voyager_asset('js/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js') }}"></script>--}}
     <script src="{{ voyager_asset('js/jquery.ui.touch-punch.min.js') }}"></script>
     <script src="{{ voyager_asset('js/jquery.touchSwipe.min.js') }}"></script>
     <script src="{{ voyager_asset('js/chartjs/chart.min.js') }}"></script>
