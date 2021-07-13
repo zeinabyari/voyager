@@ -7,7 +7,7 @@
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{voyager_asset('voyager_assets/style/rte_theme_default.css')}}" />
+    <link rel="stylesheet" href="{{voyager_asset('style/rte_theme_default.css')}}" />
 @stop
 
 @section('page_title', __('voyager::generic.'.($edit ? 'edit' : 'add')).' '.$dataType->getTranslatedAttribute('display_name_singular'))
@@ -136,8 +136,8 @@
 @stop
 
 @section('javascript')
-    <script type="text/javascript" src="{{voyager_asset('voyager_assets/js/rte.js')}}"></script>
-    <script type="text/javascript" src="{{voyager_asset('voyager_assets/js/all_plugins.js')}}"></script>
+    <script type="text/javascript" src="{{voyager_asset('js/rte.js')}}"></script>
+    <script type="text/javascript" src="{{voyager_asset('js/all_plugins.js')}}"></script>
 
     <script>
         new RichTextEditor(".rte", {
